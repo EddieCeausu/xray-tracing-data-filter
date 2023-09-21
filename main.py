@@ -32,13 +32,13 @@ def open_traces():
     return data
 
 
-# Filter the segments for Activity #3 and if it has an error => Thank add it to the filtered_subsegments list 
+# Filter the segments for Activity #3 and if it has an error => Then add it to the filtered_subsegments list 
 def filter_subsegments(trace_segments):
     filtered_subsegments = []
     for trace in trace_segments["Traces"]:
         for segment in trace["Segments"]:
             for subsegment in segment["Document"]["subsegments"]:
-                if subsegment["name"] == "Attempt #3" and subsegment.get("error", False):
+                if subsegment["name"] == "Attempt #3" and subsegment.get("error", False): # Update here to allow for customized Filtering
                     filtered_subsegments.append(subsegment)
 
     # Print the filtered subsegments
