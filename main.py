@@ -10,8 +10,9 @@ epoch_time = int(round(time.time()))
 current_time = datetime.fromtimestamp(epoch_time)
 # Get the time 6 hours ago in Epoch. Modify the 6 to get times 1-24 hours in the past
 time_6_hours_ago = datetime.fromtimestamp(epoch_time - (6 * 3600))
+filter_name = ""
 
-filter_expression = "service(id(name: \"cp-nasuni-s3-watchfolder-prod\", type: \"AWS::lambda::Function\")) { error }"
+filter_expression = "service(id(name: \"%s\", type: \"AWS::lambda::Function\")) { error }" % filter_name
 
 def get_trace_summaries(start_time, end_time, filter_expression):
     response = xray_client.get_trace_summaries(
